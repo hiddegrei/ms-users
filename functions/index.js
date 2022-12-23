@@ -96,6 +96,19 @@ app.put("/api/users/:userId/streak", (req, res) => {
       console.log(err);
     });
 });
+app.put("/api/users/:userId/streak/reset", (req, res) => {
+  admin
+    .firestore()
+    .collection("users")
+    .doc(req.params.userId)
+    .update({
+      streak: 0,
+    })
+    .then((doc) => {})
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 app.get("/api/users/:userId/following/:followId", (req, res) => {
   admin
